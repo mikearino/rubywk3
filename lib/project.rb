@@ -8,10 +8,10 @@ class Project
   end
 
   def self.all
-    returned_titles = DB.exec("SELECT * FROM projects ORDER BY title;")
+    returned_projects = DB.exec("SELECT * FROM projects ORDER BY title;")
     titles = []
     returned_projects.each do |project|
-      title = project.fetch("name")
+      title = project.fetch("title")
       id = project.fetch("id").to_i
       titles.push(Project.new({:title => title, :id => id}))
     end
