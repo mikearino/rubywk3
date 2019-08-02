@@ -38,4 +38,16 @@ class Project
     id = project.fetch("id").to_i
     Project.new({:title => title, :id => id})
   end
+
+  def delete
+    DB.exec("DELETE FROM projects WHERE id = #{@id};")
+    # DB.exec("DELETE FROM volunteers WHERE project_id = #{@id};") # new code
+  end
+
+  # def update(title)
+  #   @title = title
+  #   DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id};")
+  # end
+
+
 end
