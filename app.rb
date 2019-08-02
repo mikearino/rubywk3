@@ -14,5 +14,16 @@ end
 
 get('/projects') do
   @projects = Project.all
-  erb :projects 
+  erb :projects
+end
+
+get('/projects/new') do
+  erb :new_project
+end
+
+post('/projects') do
+  name = params[:project_name]
+  project = Project.new({:name => name, :id => nil})
+  project.save
+  redirect to('/projects')
 end
