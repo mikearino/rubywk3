@@ -1,21 +1,21 @@
 class Project
-  attr_accessor :name
+  attr_accessor :title
   attr_reader :id
 
   def initialize (attributes)
-    @name = attributes.fetch(:name)
+    @title = attributes.fetch(:title)
     @id = attributes.fetch(:id)
   end
 
   def self.all
-    returned_projects = DB.exec("SELECT * FROM projects ORDER BY name;")
-    projects = []
+    returned_titles = DB.exec("SELECT * FROM projects ORDER BY title;")
+    titles = []
     returned_projects.each do |project|
-      name = project.fetch("name")
+      title = project.fetch("name")
       id = project.fetch("id").to_i
-      projects.push(Project.new({:name => name, :id => id}))
+      titles.push(Project.new({:title => title, :id => id}))
     end
-    projects
+    titles
   end
 
 end
