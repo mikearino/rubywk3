@@ -39,15 +39,19 @@ class Project
     Project.new({:title => title, :id => id})
   end
 
-  def delete
-    DB.exec("DELETE FROM projects WHERE id = #{@id};")
-    # DB.exec("DELETE FROM volunteers WHERE project_id = #{@id};") # new code
+  def volunteers
+    Volunteer.find_by_volunteer(self.id)
   end
 
-  # def update(title)
-  #   @title = title
-  #   DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id};")
-  # end
+  def delete
+    DB.exec("DELETE FROM projects WHERE id = #{@id};")
+    DB.exec("DELETE FROM volunteers WHERE project_id = #{@id};") # new code
+  end
+
+  def update(title)
+    @title = title
+    DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id};")
+  end
 
 
 end
