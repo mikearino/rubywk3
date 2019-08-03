@@ -40,7 +40,7 @@ class Project
   end
 
   def volunteers
-    Volunteer.find_by_volunteer(self.id)
+    Volunteer.find_by_project(self.id)
   end
 
   def delete

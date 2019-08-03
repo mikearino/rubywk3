@@ -56,3 +56,22 @@ volunteer = Volunteer.new({:name => params[:volunteer_name], :project_id => @pro
 volunteer.save
 erb (:project)
 end
+
+get('/projects/:id/volunteers/:volunteer_id')do
+  @volunteer = Volunteer.find(params[:volunteer_id].to_i)
+  erb :volunteer
+end
+
+delete('/projects/:id/volunteers/:volunteer_id')do
+  volunteer = Volunteer.find(params[:volunteer_id].to_i())
+  volunteer.delete
+  @project = Project.find(params[:id].to_i)
+  erb :project
+end
+
+patch('/projects/:id/volunteers/:volunteer_id')do
+@project = Project.find(params[:id].to_i)
+volunteer = Volunteer.find(params[:volunteer_id].to_i())
+volunteer.update(params[:name], @project_id)
+erb :project
+end
